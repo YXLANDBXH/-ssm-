@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!-- 起别名 -->
+    <!--<typeAliases>-->
+        <!--&lt;!&ndash; <typeAlias alias="User" type="cn.neudu.mybatis.pojo.User"/> &ndash;&gt;-->
+        <!--&lt;!&ndash; 批量起别名 : 自动扫描整个包,包中的类的别名就是类名-->
+        <!--<package name="cn.neuedu.ssm.pojo"/>&ndash;&gt;-->
+    <!--</typeAliases>-->
+
+    <!--&lt;!&ndash; 分页插件: 拦截器 &ndash;&gt;-->
+    <plugins>
+        <!--注意这里要写成PageInterceptor, 5.0之前的版本都是写PageHelper, 5.0之后要换成PageInterceptor-->
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+            <!-- 指定数据库的方言（类型）必须  -->
+            <property name="helperDialect" value="mysql"/>
+            <property name="reasonable" value="true"/>
+        </plugin>
+    </plugins>
+</configuration>

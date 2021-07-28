@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!--配置静态资源拦截规则-->
+    <mvc:resources mapping="/images/**" location="/images/"></mvc:resources>
+    <mvc:resources mapping="/js/**" location="/js/"></mvc:resources>
+    <mvc:resources mapping="/css/**" location="/css/"></mvc:resources>
+    <mvc:resources mapping="/page/**" location="/page/"></mvc:resources>
+
+    <!--相当于配置新版本的处理器映射器和适配器-->
+    <mvc:annotation-driven></mvc:annotation-driven>
+
+    <!--  开启注解扫描  -->
+    <context:component-scan base-package="com.xl.controller"></context:component-scan>
+
+    <mvc:annotation-driven conversion-service="myconversionService"></mvc:annotation-driven>
+
+    <!--配置视图解析器-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/jsp/"></property>
+        <property name="suffix" value=".jsp"></property>
+    </bean>
+
+    <!--配置springmvc的上传组件-->
+    <bean name="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="50000000000"></property>
+        <!-- 设置默认编码 -->
+        <property name="defaultEncoding" value="utf-8"></property>
+    </bean>
+
+    <bean name="myconversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="converters">
+            <set>
+                <!--配置日期转换器-->
+                <bean class="com.xl.util.MyConventers"></bean>
+            </set>
+        </property>
+    </bean>
+
+    <!--配置登录拦截器操作-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"></mvc:mapping>
+            <bean class="com.xl.interceptor.LoginHandlerInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+</beans>        

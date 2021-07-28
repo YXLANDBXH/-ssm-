@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xl.mapper.DocumentAndUserMapper">
+  <resultMap id="BaseResultMap" type="com.xl.domain.Document">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="filename" jdbcType="VARCHAR" property="filename" />
+    <result column="filetype" jdbcType="VARCHAR" property="filetype" />
+    <result column="filebytes" jdbcType="VARCHAR" property="filebytes" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="creat_date" jdbcType="TIMESTAMP" property="creatDate" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+
+    <!--描述一对一关系-->
+    <association property="user" javaType="com.xl.domain.User">
+      <id column="id" property="id"></id>
+      <result column="loginname" property="loginname"></result>
+      <result column="password" property="password"></result>
+      <result column="status" property="status"></result>
+      <result column="createdate" property="createdate"></result>
+      <result column="username" property="username"></result>
+    </association>
+  </resultMap>
+
+  <select id="getDocumentList" resultMap="BaseResultMap">
+    select d.*,u.username
+    from document_inf d
+    left join user_inf u
+    on d.user_id = u.id
+  </select>
+</mapper>

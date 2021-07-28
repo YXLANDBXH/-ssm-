@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xl.mapper.EmployeeAndDeptAndJobMapper">
+  <resultMap id="BaseResultMap" type="com.xl.domain.Employee">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="CARD_ID" jdbcType="VARCHAR" property="cardId" />
+    <result column="ADDRESS" jdbcType="VARCHAR" property="address" />
+    <result column="POST_CODE" jdbcType="VARCHAR" property="postCode" />
+    <result column="TEL" jdbcType="VARCHAR" property="tel" />
+    <result column="PHONE" jdbcType="VARCHAR" property="phone" />
+    <result column="QQ_NUM" jdbcType="VARCHAR" property="qqNum" />
+    <result column="EMAIL" jdbcType="VARCHAR" property="email" />
+    <result column="SEX" jdbcType="INTEGER" property="sex" />
+    <result column="PARTY" jdbcType="VARCHAR" property="party" />
+    <result column="BIRTHDAY" jdbcType="TIMESTAMP" property="birthday" />
+    <result column="RACE" jdbcType="VARCHAR" property="race" />
+    <result column="EDUCATION" jdbcType="VARCHAR" property="education" />
+    <result column="SPECIALITY" jdbcType="VARCHAR" property="speciality" />
+    <result column="HOBBY" jdbcType="VARCHAR" property="hobby" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="CREATE_DATE" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="state" jdbcType="INTEGER" property="state" />
+    <result column="dept_id" jdbcType="INTEGER" property="deptId" />
+    <result column="job_id" jdbcType="INTEGER" property="jobId" />
+    <association property="dept" javaType="com.xl.domain.Dept">
+      <id column="id" property="id"></id>
+      <result column="dname" property="dname"></result>
+      <result column="dremark" property="dremark"></result>
+      <result column="dstatus" property="dstatus"></result>
+    </association>
+    <association property="job" javaType="com.xl.domain.Job">
+      <id column="id" property="id"></id>
+      <result column="jname" property="jname"></result>
+      <result column="jremark" property="jremark"></result>
+      <result column="jstate" property="jstate"></result>
+    </association>
+  </resultMap>
+
+  <select id="getEmpList" resultMap="BaseResultMap">
+    select e.*,j.jname,d.dname
+    from employee_inf e
+    left join job_inf j
+    on e.job_id = j.id
+    left join dept_inf d
+    on e.dept_id = d.id
+  </select>
+</mapper>

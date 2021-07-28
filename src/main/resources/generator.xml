@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <context id="testTables" targetRuntime="MyBatis3">
+        <!-- 生成一对一配置 -->
+        <plugin type="cc.bandaotixi.plugins.OneToOnePlugin"></plugin>
+        <!-- 生成一对多配置 -->
+        <!--<plugin type="cc.bandaotixi.plugins.OneToManyPlugin"></plugin>-->
+        <!--批量插入和批量更新-->
+        <!--<plugin type="cc.bandaotixi.plugins.BatchInsertPlugin"></plugin>-->
+        <!--<plugin type="cc.bandaotixi.plugins.BatchUpdatePlugin"></plugin>-->
+
+        <commentGenerator>
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true" />
+        </commentGenerator>
+        <!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/demo"
+                        userId="root"
+                        password="root">
+        </jdbcConnection>
+        <!-- <jdbcConnection driverClass="oracle.jdbc.OracleDriver"
+            connectionURL="jdbc:oracle:thin:@127.0.0.1:1521:yycg"
+            userId="yycg"
+            password="yycg">
+        </jdbcConnection> -->
+
+        <!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true时把JDBC DECIMAL 和
+            NUMERIC 类型解析为java.math.BigDecimal -->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+
+        <!-- targetProject:生成实体类的位置 -->
+        <javaModelGenerator targetPackage="com.xl.domain" targetProject=".\src\main\java">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false" />
+            <!-- 从数据库返回的值被清理前后的空格 -->
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+
+        <!-- targetProject:mapper映射文件生成的位置 -->
+        <sqlMapGenerator targetPackage="com.xl.mapper" targetProject=".\src\main\resources\mappers">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false" />
+        </sqlMapGenerator>
+
+        <!-- targetPackage：mapper接口生成的位置 -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.xl.mapper" targetProject=".\src\main\java">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false" />
+        </javaClientGenerator>
+
+        <!-- 指定数据库表 -->
+        <table tableName="dept_inf" domainObjectName="Dept"></table>
+        <table tableName="document_inf" domainObjectName="Document"></table>
+        <table tableName="employee_inf" domainObjectName="Employee"></table>
+        <table tableName="job_inf" domainObjectName="Job"></table>
+        <table tableName="notice_inf" domainObjectName="Notice"></table>
+        <table tableName="type_inf" domainObjectName="Type"></table>
+        <table tableName="user_inf" domainObjectName="User"></table>
+        <!-- 有些表的字段需要指定java类型
+         <table schema="" tableName="">
+            <columnOverride column="" javaType="" />
+        </table> -->
+    </context>
+</generatorConfiguration>
