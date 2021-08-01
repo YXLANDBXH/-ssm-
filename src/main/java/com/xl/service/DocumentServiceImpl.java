@@ -64,4 +64,10 @@ public class DocumentServiceImpl implements DocumentService {
             this.documentMapper.deleteByPrimaryKey(Integer.parseInt(documentIds[i]));
         }
     }
+
+//    @Override
+//    public Document queryDocuFilenameById(String id) {
+//        String document = this.documentMapper.queryDocuFilenameById(id);
+//
+//    }
 }

@@ -7,10 +7,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="hrm" />
+        <module name="oasys" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="hrm" target="1.7" />
+      <module name="oasys" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

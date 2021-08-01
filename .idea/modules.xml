@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/hrm.iml" filepath="$PROJECT_DIR$/hrm.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../oa_system/oasys.iml" filepath="$PROJECT_DIR$/../oa_system/oasys.iml" />
     </modules>
   </component>
 </project>

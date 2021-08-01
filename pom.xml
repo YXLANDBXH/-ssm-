@@ -289,7 +289,12 @@
       <artifactId>shiro-quartz</artifactId>
       <version>1.2.3</version>
     </dependency>
-    <!--shiro  end-->
+      <dependency>
+          <groupId>org.apache.tomcat.embed</groupId>
+          <artifactId>tomcat-embed-core</artifactId>
+          <version>9.0.48</version>
+      </dependency>
+      <!--shiro  end-->
   </dependencies>
 
   <build>

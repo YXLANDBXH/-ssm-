@@ -21,4 +21,6 @@ public interface DocumentService {
     List<Document> selectDocumentLike(Document document);
     //删除
     void deleteDocuments(String[] documentIds);
+    //根据id查询filename
+//    Document queryDocuFilenameById(String id);
 }

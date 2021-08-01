@@ -137,6 +137,7 @@
                                     <input type="button" id="query" value="搜索" />
                                     <input type="button" id="delete" value="删除"/>
                                 </td>
+                                <td>${errorResult }</td>
                             </tr>
                         </table>
                     </td>

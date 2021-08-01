@@ -92,6 +92,14 @@
     from document_inf
     where id = #{id,jdbcType=INTEGER}
   </select>
+
+  <select id="queryDocuFilenameById" resultType="string" parameterType="integer">
+    select filename
+    from document_inf
+    where id = #{id}
+  </select>
+
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from document_inf
     where id = #{id,jdbcType=INTEGER}

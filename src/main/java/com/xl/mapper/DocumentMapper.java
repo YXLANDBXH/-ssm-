@@ -27,4 +27,7 @@ public interface DocumentMapper {
     int updateByPrimaryKeySelective(Document record);
 
     int updateByPrimaryKey(Document record);
+
+    //根据id查询filename
+    String queryDocuFilenameById(@Param("id")String id);
 }
