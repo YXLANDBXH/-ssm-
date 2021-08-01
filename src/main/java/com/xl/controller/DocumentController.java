@@ -228,6 +228,13 @@ public class DocumentController {
         return "redirect:documentlist.action";
     }
 
+    /**
+     * 文件预览功能
+     * @param id
+     * @param response
+     * @return
+     * @throws IOException
+     */
     @RequestMapping(value = "documentprevload.action")
     public String documentPrevLoad( String id, HttpServletResponse response) throws IOException {
         Document document = this.documentService.selectDocumentById(id);
